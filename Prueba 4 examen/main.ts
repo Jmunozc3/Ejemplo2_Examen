@@ -7,8 +7,7 @@ import { resolvers } from "./resolvers.ts";
 const MONGO_URL = Deno.env.get("MONGO_URL");
 
 if (!MONGO_URL) {
-  console.error("MONGODB_URI is not set");
-  Deno.exit(1);
+  throw new Error("Please provide a MONGO_URL");
 }
 
 const client = new MongoClient(MONGO_URL);
