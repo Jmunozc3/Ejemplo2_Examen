@@ -59,10 +59,9 @@ export const resolvers={
         addContact:async(_:unknown,args:addcontact,ctx:Context):Promise<ContactMode> =>{
             const APY_KEY = Deno.env.get("APY_KEY");
 
-            if (!APY_KEY) {
-            console.error("APY_KEY is not set");
-           Deno.exit(1);
-            }
+           if (!APY_KEY) {
+          throw new Error("Please provide a MONGO_URL");
+          }
 
             const {name,phone,friends} =args;
 
@@ -100,12 +99,11 @@ export const resolvers={
         },
 
         updateContact:async(_:unknown,args:update,ctx:Context):Promise<ContactMode|null>=>{
-            const APY_KEY = Deno.env.get("APY_KEY");
+             const APY_KEY = Deno.env.get("APY_KEY");
 
-            if (!APY_KEY) {
-            console.error("APY_KEY is not set");
-           Deno.exit(1);
-            }
+           if (!APY_KEY) {
+          throw new Error("Please provide a MONGO_URL");
+          }
 
             const{id,name,phone} =args;
 
